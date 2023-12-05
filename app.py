@@ -182,7 +182,6 @@ def defaultPage():
     else:
         return redirect(url_for('login'))
     
-
 @app.route('/add_product', methods=['GET','POST'])
 @login_required
 def add_product():
@@ -207,7 +206,6 @@ def add_product():
             return redirect(url_for('supplier_dashboard'))
         except Exception as e:
             return jsonify({'error': str(e)}), 500
-
 
 @app.route('/update_product/<int:product_id>', methods=['GET','PUT'])
 @login_required
@@ -261,6 +259,36 @@ def delete_product(product_id):
 
         except Exception as e:
             return jsonify({'error': str(e)}), 500
-        
+
+@app.route('/search/<search_term>')
+@login_required
+def search_method(search_term):
+    if current_user.is_authenticated and current_user.userType == "Customer":
+        cursor = mysql.cursor()
+        query = '''
+        SELECT p.*, u.userName
+        FROM Product p
+        JOIN User u ON p.userID = u.userID
+        WHERE p.productName LIKE %s
+           OR p.productDescription LIKE %s
+        '''
+        cursor.execute(query, ('%' + search_term + '%', '%' + search_term + '%'))
+        results  = cursor.fetchall()
+        products = []
+        for row in results :
+            product = {
+                'productID': row[0],
+                'ProductName': row[1],
+                'Price': row[2],
+                'Rating': row[3],
+                'ProductDescription': row[4],
+                'userName': row[6]
+            }
+            products.append(product)
+        print('products', products)
+        return render_template('customer.html', products=products)
+    else:
+        return 'Access denied. You are not a customer.'
+
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port='8080', ssl_context=('cert.pem', 'privkey.pem')) #Run the flask app at port 8080

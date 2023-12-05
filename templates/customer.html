@@ -120,17 +120,11 @@
         function searchMethod() {
             const searchTerm = document.getElementById('searchInput').value;
             
-            // Make a request to the Python API for searching
-            fetch(`/search_product?term=${searchTerm}`, {
+            fetch(`/search/${encodeURIComponent(searchTerm)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    window.location.href = `/search_results?term=${searchTerm}`;
-                }
             });
         }
     </script>
