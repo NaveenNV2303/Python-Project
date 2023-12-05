@@ -176,11 +176,12 @@
                     card.appendChild(rating);
                     card.appendChild(seller);
 
-                    productCardsContainer.appendChild(card);
+                    searchResultsContainer.appendChild(card);
                 });
             } else {
-                productCardsContainer.textContent = 'No products found.';
+                searchResultsContainer.textContent = 'No products found.';
             }
+            console.log(searchResultsContainer)
         }
 
     </script>
