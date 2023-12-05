@@ -106,7 +106,7 @@
         <input type="text" id="searchInput" placeholder="Search...">
         <button type="button" onclick="searchMethod()">Search</button>
     </div>
-    <div id="searchResultsContainer"></div>
+    <div id="productCardsContainer"></div>
     <div class="product-container">
         {% for product in products %}
             <div class="product-card">
@@ -142,7 +142,7 @@
             });
         }
         function displaySearchResults(results) {
-            const searchResultsContainer = document.getElementById('productCardsContainer');
+            const searchResultsContainer = document.getElementById('productCardsContainer').innerHTML;
 
             // Clear previous results
             if(searchResultsContainer!=null){
