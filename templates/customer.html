@@ -142,11 +142,9 @@
             });
         }
         function displaySearchResults(results) {
-            const searchResultsContainer = document.getElementById('productCardsContainer').innerHTML;
 
-            // Clear previous results
-            if(searchResultsContainer!=null){
-                searchResultsContainer = '';
+            if(document.getElementById('productCardsContainer').innerHTML!=null){
+                document.getElementById('productCardsContainer').innerHTML = '';
             }
             
             // Display product results
@@ -176,13 +174,11 @@
                     card.appendChild(rating);
                     card.appendChild(seller);
 
-                    searchResultsContainer.appendChild(card);
+                    document.getElementById('productCardsContainer').innerHTML.appendChild(card);
                 });
             } else {
-                searchResultsContainer.textContent = 'No products found.';
+                document.getElementById('productCardsContainer').textContent = 'No products found.';
             }
-            document.getElementById('productCardsContainer').innerHTML=searchResultsContainer
-            console.log(searchResultsContainer)
         }
 
     </script>
