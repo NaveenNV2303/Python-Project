@@ -145,8 +145,10 @@
             const searchResultsContainer = document.getElementById('productCardsContainer');
 
             // Clear previous results
-            searchResultsContainer.innerHTML = '';
-
+            if(searchResultsContainer.innerHTML!=null){
+                searchResultsContainer.innerHTML = '';
+            }
+            
             // Display product results
             if (results && results.length > 0) {
                 results.forEach(product => {
