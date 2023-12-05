@@ -85,10 +85,10 @@
     <script>
         function updateMethod(productID){
             if(document.getElementById(`updateButton${productID}`).innerText=='update'){
-                document.getElementById(`productName${productID}`).setAttribute("readonly");
-                document.getElementById(`productPrice${productID}`).setAttribute("readonly");
-                document.getElementById(`productRating${productID}`).setAttribute("readonly");
-                document.getElementById(`productDescription${productID}`).setAttribute("readonly");
+                document.getElementById(`productName${productID}`).setAttribute("readonly","readonly");
+                document.getElementById(`productPrice${productID}`).setAttribute("readonly","readonly");
+                document.getElementById(`productRating${productID}`).setAttribute("readonly","readonly");
+                document.getElementById(`productDescription${productID}`).setAttribute("readonly","readonly");
                 const updatedProductName = document.getElementById(`productName${productID}`).value;
                 const updatedProductPrice = document.getElementById(`productPrice${productID}`).value;
                 const updatedProductRating = document.getElementById(`productRating${productID}`).value;
@@ -113,8 +113,10 @@
                 }
                 });
                 document.getElementById(`updateButton${productID}`).innerText=='edit'
+                window.location.reload();
             }else{
                 document.getElementById(`updateButton${productID}`).innerText=='update'
+                window.location.reload();
                 document.getElementById(`productName${productID}`).removeAttribute("readonly");
                 document.getElementById(`productPrice${productID}`).removeAttribute("readonly");
                 document.getElementById(`productRating${productID}`).removeAttribute("readonly");
