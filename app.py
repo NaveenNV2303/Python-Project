@@ -271,9 +271,8 @@ def search_method(search_term):
         JOIN User u ON p.userID = u.userID
         WHERE p.productName LIKE %s
            OR p.productDescription LIKE %s
-           OR u.userName LIKE %s'
         '''
-        cursor.execute(query, ('%' + search_term + '%', '%' + search_term + '%', '%' + search_term + '%'))
+        cursor.execute(query, ('%' + search_term + '%', '%' + search_term + '%'))
         results  = cursor.fetchall()
         products = []
         for row in results :
