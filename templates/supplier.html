@@ -77,14 +77,14 @@
             <input type="number" id="productPrice{{product['productID']}}" name="price" placeholder="Price" value="{{ product['Price'] }}" required readonly>
             <input type="number" id="productRating{{product['productID']}}" name="rating" placeholder="rating" value="{{ product['Rating'] }}" required readonly>
             <input type="text" id="productDescription{{product['productID']}}" name="productDescription" placeholder="Product Description" value="{{ product['ProductDescription'] }}" required readonly>
-            <button type="button" id="updateButton" name="submit" onclick="updateMethod('{{ product.productID }}')">edit</button>
+            <button type="button" id="updateButton{{product['productID']}}" name="submit" onclick="updateMethod('{{ product.productID }}')">edit</button>
             <button type="button" name="submit" onclick="deleteMethod('{{ product.productID }}')">delete</button>
         </form>
         {% endfor %}
     </div>
     <script>
         function updateMethod(productID){
-            if(document.getElementById('updateButton').innerText=='update'){
+            if(document.getElementById(`updateButton${productID}`).innerText=='update'){
                 document.getElementById(`productName${productID}`).setAttribute("readonly");
                 document.getElementById(`productPrice${productID}`).setAttribute("readonly");
                 document.getElementById(`productRating${productID}`).setAttribute("readonly");
@@ -112,9 +112,9 @@
                     window.location.reload()
                 }
                 });
-                document.getElementById('updateButton').innerText=='edit'
+                document.getElementById(`updateButton${productID}`).innerText=='edit'
             }else{
-                document.getElementById('updateButton').innerText=='update'
+                document.getElementById(`updateButton${productID}`).innerText=='update'
                 document.getElementById(`productName${productID}`).removeAttribute("readonly");
                 document.getElementById(`productPrice${productID}`).removeAttribute("readonly");
                 document.getElementById(`productRating${productID}`).removeAttribute("readonly");
