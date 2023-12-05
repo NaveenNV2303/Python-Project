@@ -132,7 +132,7 @@
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-                    window.location.reload();
+                return response.json();
             }).then(data => {
                 console.log(data);
             })
