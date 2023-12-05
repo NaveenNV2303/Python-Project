@@ -106,6 +106,7 @@
         <input type="text" id="searchInput" placeholder="Search...">
         <button type="button" onclick="searchMethod()">Search</button>
     </div>
+    <div id="searchResultsContainer"></div>
     <div class="product-container">
         {% for product in products %}
             <div class="product-card">
@@ -140,6 +141,46 @@
                 console.error('Error:', error);
             });
         }
+        function displaySearchResults(results) {
+            const productCardsContainer = document.getElementById('productCardsContainer');
+
+            // Clear previous results
+            productCardsContainer.innerHTML = '';
+
+            // Display product results
+            if (results && results.length > 0) {
+                results.forEach(product => {
+                    const card = document.createElement('div');
+                    card.classList.add('product-card');
+
+                    const title = document.createElement('h3');
+                    title.textContent = product.productName;
+
+                    const description = document.createElement('p');
+                    description.textContent = product.productDescription;
+
+                    const price = document.createElement('p');
+                    price.textContent = `Price: $${product.price}`;
+
+                    const rating = document.createElement('p');
+                    rating.textContent = `Rating: ${product.rating}`;
+
+                    const seller = document.createElement('p');
+                    seller.textContent = `Seller: ${product.userName}`;
+
+                    card.appendChild(title);
+                    card.appendChild(description);
+                    card.appendChild(price);
+                    card.appendChild(rating);
+                    card.appendChild(seller);
+
+                    productCardsContainer.appendChild(card);
+                });
+            } else {
+                productCardsContainer.textContent = 'No products found.';
+            }
+        }
+
     </script>
 </body>
 </html>
