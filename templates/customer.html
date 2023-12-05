@@ -19,7 +19,7 @@
             text-align: center;
         }
 
-        .product-container {
+        .product-container, .productCardsContainer {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start; 
@@ -151,32 +151,40 @@
             if (results && results.length > 0) {
                 results.forEach(product => {
                     console.log(product)
-                    const card = document.createElement('div');
-                    card.classList.add('product-card');
+                    var el = `<div class="product-card">
+                                    <div class="product-name">${product.ProductName}</div>
+                                    <div class="product-price">${product.Price}</div>
+                                    <div class="product-description">${product.ProductDescription}</div>
+                                    <div class="user-name">Supplier: ${product.userName}</div>
+                              </div>`
+                    document.getElementById('productCardsContainer').innerHTML += el;
 
-                    const title = document.createElement('h3');
-                    title.textContent = product.ProductName;
+                    // const card = document.createElement('div');
+                    // card.classList.add('product-card');
 
-                    console.log('title',title)
-                    const description = document.createElement('p');
-                    description.textContent = product.ProductDescription;
+                    // const title = document.createElement('h3');
+                    // title.textContent = product.ProductName;
 
-                    const price = document.createElement('p');
-                    price.textContent = `Price: $${product.Price}`;
+                    // console.log('title',title)
+                    // const description = document.createElement('p');
+                    // description.textContent = product.ProductDescription;
 
-                    const rating = document.createElement('p');
-                    rating.textContent = `Rating: ${product.Rating}`;
+                    // const price = document.createElement('p');
+                    // price.textContent = `Price: $${product.Price}`;
 
-                    const seller = document.createElement('p');
-                    seller.textContent = `Seller: ${product.userName}`;
+                    // const rating = document.createElement('p');
+                    // rating.textContent = `Rating: ${product.Rating}`;
 
-                    card.appendChild(title);
-                    card.appendChild(description);
-                    card.appendChild(price);
-                    card.appendChild(rating);
-                    card.appendChild(seller);
+                    // const seller = document.createElement('p');
+                    // seller.textContent = `Seller: ${product.userName}`;
 
-                    document.getElementById('productCardsContainer').appendChild(card);
+                    // card.appendChild(title);
+                    // card.appendChild(description);
+                    // card.appendChild(price);
+                    // card.appendChild(rating);
+                    // card.appendChild(seller);
+
+                    // document.getElementById('productCardsContainer').appendChild(card);
                 });
             } else {
                 document.getElementById('productCardsContainer').textContent = 'No products found.';
