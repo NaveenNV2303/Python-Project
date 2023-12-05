@@ -174,7 +174,7 @@
                     card.appendChild(rating);
                     card.appendChild(seller);
 
-                    document.getElementById('productCardsContainer').innerHTML.appendChild(card);
+                    document.getElementById('productCardsContainer').innerHTML+=card;
                 });
             } else {
                 document.getElementById('productCardsContainer').textContent = 'No products found.';
