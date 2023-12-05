@@ -286,7 +286,7 @@ def search_method(search_term):
             }
             products.append(product)
         print('products', products)
-        return render_template('customer.html', products=products)
+        return jsonify(products), 200
     else:
         return 'Access denied. You are not a customer.'
 
