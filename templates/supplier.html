@@ -112,11 +112,9 @@
                     window.location.reload()
                 }
                 });
-                document.getElementById(`updateButton${productID}`).innerText=='edit'
-                window.location.reload();
+                document.getElementById(`updateButton${productID}`).innerText='edit'
             }else{
-                document.getElementById(`updateButton${productID}`).innerText=='update'
-                window.location.reload();
+                document.getElementById(`updateButton${productID}`).innerText='update'
                 document.getElementById(`productName${productID}`).removeAttribute("readonly");
                 document.getElementById(`productPrice${productID}`).removeAttribute("readonly");
                 document.getElementById(`productRating${productID}`).removeAttribute("readonly");
