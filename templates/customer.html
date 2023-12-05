@@ -91,6 +91,9 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .displayNone{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -120,10 +123,10 @@
     <script>
         function searchMethod() {
             const searchTerm = document.getElementById('searchInput').value;
-            // if(searchTerm==""){
-            //     console.log('Search term is empty. Please enter a valid search term.');
-            //     return;
-            // }
+            if(searchTerm==""){
+                console.log('Search term is empty. Please enter a valid search term.');
+                displaySearchResults(searchTerm);
+            }
             fetch(`/search/${encodeURIComponent(searchTerm)}`, {
                 method: 'GET',
                 headers: {
@@ -146,49 +149,26 @@
             if(document.getElementById('productCardsContainer').innerHTML!=null){
                 document.getElementById('productCardsContainer').innerHTML = '';
             }
-            
-            // Display product results
-            if (results && results.length > 0) {
-                results.forEach(product => {
-                    console.log(product)
-                    var el = `<div class="product-card">
-                                    <div class="product-name">${product.ProductName}</div>
-                                    <div class="product-price">${product.Price}</div>
-                                    <div class="product-description">${product.ProductDescription}</div>
-                                    <div class="user-name">Supplier: ${product.userName}</div>
-                              </div>`
-                    document.getElementById('productCardsContainer').innerHTML += el;
-
-                    // const card = document.createElement('div');
-                    // card.classList.add('product-card');
-
-                    // const title = document.createElement('h3');
-                    // title.textContent = product.ProductName;
-
-                    // console.log('title',title)
-                    // const description = document.createElement('p');
-                    // description.textContent = product.ProductDescription;
-
-                    // const price = document.createElement('p');
-                    // price.textContent = `Price: $${product.Price}`;
-
-                    // const rating = document.createElement('p');
-                    // rating.textContent = `Rating: ${product.Rating}`;
-
-                    // const seller = document.createElement('p');
-                    // seller.textContent = `Seller: ${product.userName}`;
-
-                    // card.appendChild(title);
-                    // card.appendChild(description);
-                    // card.appendChild(price);
-                    // card.appendChild(rating);
-                    // card.appendChild(seller);
-
-                    // document.getElementById('productCardsContainer').appendChild(card);
-                });
-            } else {
-                document.getElementById('productCardsContainer').textContent = 'No products found.';
+            if(results!=''){
+                document.querySelector('.product-container').classList.add('displayNone')
+                if (results && results.length > 0) {
+                    results.forEach(product => {
+                        console.log(product)
+                        var el = `<div class="product-card">
+                                        <div class="product-name">${product.ProductName}</div>
+                                        <div class="product-price">${product.Price}</div>
+                                        <div class="product-description">${product.ProductDescription}</div>
+                                        <div class="user-name">Supplier: ${product.userName}</div>
+                                </div>`
+                        document.getElementById('productCardsContainer').innerHTML += el;
+                    });
+                } else {
+                    document.getElementById('productCardsContainer').textContent = 'No products found.';
+                }
+                document.querySelector('.product-container').classList.add('displayNone')
             }
+            // Display product results
+            
         }
 
     </script>

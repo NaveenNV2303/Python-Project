@@ -265,17 +265,13 @@ def delete_product(product_id):
 def search_method(search_term):
     if current_user.is_authenticated and current_user.userType == "Customer":
         cursor = mysql.cursor()
-        print('search term = ',search_term)
-        if search_term=='':
-             query = '''SELECT p.*, u.userName FROM Product p JOIN User u ON p.userID = u.userID'''
-        else:
-            query = query = '''
-                    SELECT p.*, u.userName
-                    FROM Product p
-                    JOIN User u ON p.userID = u.userID
-                    WHERE p.productName LIKE %s
-                    OR p.productDescription LIKE %s
-                    '''
+        query = '''
+        SELECT p.*, u.userName
+        FROM Product p
+        JOIN User u ON p.userID = u.userID
+        WHERE p.productName LIKE %s
+           OR p.productDescription LIKE %s
+        '''
         cursor.execute(query, ('%' + search_term + '%', '%' + search_term + '%'))
         results  = cursor.fetchall()
         products = []
