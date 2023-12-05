@@ -126,6 +126,7 @@
             if(searchTerm==""){
                 console.log('Search term is empty. Please enter a valid search term.');
                 displaySearchResults(searchTerm);
+                return;
             }
             fetch(`/search/${encodeURIComponent(searchTerm)}`, {
                 method: 'GET',
