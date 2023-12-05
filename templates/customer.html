@@ -146,7 +146,7 @@
 
             // Clear previous results
             if(searchResultsContainer!=null){
-                searchResultsContainer.innerHTML = '';
+                searchResultsContainer = '';
             }
             
             // Display product results
@@ -181,6 +181,7 @@
             } else {
                 searchResultsContainer.textContent = 'No products found.';
             }
+            document.getElementById('productCardsContainer').innerHTML=searchResultsContainer
             console.log(searchResultsContainer)
         }
 
