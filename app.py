@@ -265,6 +265,7 @@ def delete_product(product_id):
 def search_method(search_term):
     if current_user.is_authenticated and current_user.userType == "Customer":
         cursor = mysql.cursor()
+        print('search term = ',search_term)
         query = '''
         SELECT p.*, u.userName
         FROM Product p
