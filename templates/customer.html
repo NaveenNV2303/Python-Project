@@ -113,7 +113,7 @@
     <div class="product-container">
         {% for product in products %}
             <div class="product-card">
-                <div class="product-name">{{ product['ProductName'] }}</div>
+                <div class="product-name">{{ product['ProductName'] }} <span class="product-rating">{{ product['Rating'] }}</span></div>
                 <div class="product-price">${{ product['Price'] }}</div>
                 <div class="product-description">{{ product['ProductDescription'] }}</div>
                 <div class="user-name">Supplier: {{ product['userName'] }}</div>
